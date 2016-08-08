@@ -22,7 +22,7 @@ RUN rm /etc/localtime && \
 	mkdir /tmp/php_sessions/ && mkdir /tmp/php_sessions/www/ && chown -R nginx:nginx /tmp/php_sessions/www/ && \
 	cd /tmp && git clone https://github.com/websupport-sk/pecl-memcache && cd /tmp/pecl-memcache && phpize && \
 	./configure --disable-all --enable-cli --enable-zlib --enable-hash --enable-session --without-gd --with-bz2 --enable-memcache=shared && \
-	make && /usr/local/bin/docker-php-ext-enable memcache
+	make && make install && /usr/local/bin/docker-php-ext-enable memcache
 	
 COPY conf/ /
 EXPOSE 80
